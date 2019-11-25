@@ -52,12 +52,13 @@ void Initialization (void)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluOrtho2D(-780, 780, -420, 420);
+
 }
 
 void draw(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	float x_1,y_1,x_2,y_2,i;
+	float x_1,y_1,x_2,y_2,i,x_3,y_3;
 	glBegin(GL_POINTS);
 
 	glColor3f(0.0, 0.0, 1.0);
@@ -68,8 +69,13 @@ void draw(void)
 	    x_2 = 10 * cos(i);
 	    y_2 = 10 * sin(i);
 
+	    x_3 = 10 * cos(i);
+	    y_3 = 10 * sin(i);
+
 	    glVertex2i(x_1+200,y_1);
 	    glVertex2f(x_2+200,y_2);
+	    glVertex2f(x_3+160,y_2-40);
+
 
 	}
 	glEnd();
@@ -101,14 +107,20 @@ void draw(void)
 
 	glColor3f(1.0, 0.0, 1.0);
 	for ( i = 0; i < (2 * PI); i += 0.001) {
-		x_1 = 80 * cos(i);
+	    x_1 = 80 * cos(i);
 	    y_1 = 80 * sin(i);
 
 	    x_2 = 10 * cos(i);
 	    y_2 = 10 * sin(i);
 
+	    x_3 = 10 * cos(i);
+	    y_3 = 10 * sin(i);
+
 	    glVertex2i(x_1-200,y_1);
 	    glVertex2f(x_2-200,y_2);
+	    glVertex2f(x_3-240,y_2-40);
+
+
 
 	}
 	glEnd();
@@ -154,10 +166,10 @@ void rotator_function(int value)
 int main(int argc, char **argv)
 {
     srand(time(0));
-    angle_1 = lowest + (rand() % 30);
-    angle_2 = lowest + (rand() % 30);
+    angle_1 = lowest + (rand() % highest);
+    angle_2 = lowest + (rand() % highest);
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB |GLUT_DOUBLE);
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
     glutInitWindowSize(1400, 800);
     glutCreateWindow("Third Test");
     glutTimerFunc(10,rotator_function,100);
